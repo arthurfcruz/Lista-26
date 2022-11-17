@@ -1,60 +1,47 @@
-let livros = []
-
 class Livro{
-    titulo
-    autor
-    editora
-    anoPublicacao
-    disponibilidade
+    Titulo
+    Autor
+    Editora
+    AnoPublicacao
+    Disponibilidade
+
+    constructor(titulo, autor, editora, anoPublicacao){
+        this.Titulo = titulo
+        this.Autor = autor
+        this.Editora = editora
+        this.AnoPublicacao = anoPublicacao
+        this.Disponibilidade = true
+    }
 }
 
-let harryPotter = new Livro ()
-harryPotter.titulo = 'Harry Potter e a Pedra Filosofal'
-harryPotter.autor = 'J. K. Rowling'
-harryPotter.editora = 'Rocco'
-harryPotter.anoPublicacao = 1998
-harryPotter.disponibilidade = true
-livros.push(harryPotter)
-
-let senhorDosAneis = new Livro ()
-senhorDosAneis.titulo = 'O Senhor dos anéis: A sociedade do anel'
-senhorDosAneis.autor = 'J. R. R. Tolkien'
-senhorDosAneis.editora = 'HarperCollins'
-senhorDosAneis.anoPublicacao = 1954
-senhorDosAneis.disponibilidade = true
-livros.push(senhorDosAneis)
-
-let oCapital = new Livro ()
-oCapital.titulo = 'O Capital'
-oCapital.autor = 'Karl Marx '
-oCapital.editora = 'edipro'
-oCapital.anoPublicacao = 1867
-oCapital.disponibilidade = false
-livros.push(oCapital)
-
 class Biblioteca{
-    nome
-    endereco
-    telefone
+    Nome
+    Endereco
+    Telefone
+    AcervoDeLivros = []
 
-    buscarLivro(nomeLivro){
+    constructor(nome, endereco, telefone){
+        this.Nome = nome
+        this.Endereco = endereco
+        this.Telefone = telefone
+    }
+
+    BuscarLivro(nomeLivro){
         
-        nomeLivro = prompt('qual o nome do livro que deseja buscar?')
-        
-        for (let index = 0; index < titulo.length; index++) {
-            if (nomeLivro == titulo[index]) {
-                console.log(autor[index], editora[index], anoPublicacao[index], disponibilidade[index])
+        for (let index = 0; index < this.AcervoDeLivros.length; index++) {
+            if (nomeLivro == this.AcervoDeLivros[index].Titulo) {
+                console.log(this.AcervoDeLivros[index].Autor, this.AcervoDeLivros[index].Editora, this.AcervoDeLivros[index].AnoPublicacao, this.AcervoDeLivros[index].Disponibilidade)
             }
         }
         
     }
 
-    emprestarLivro(nomeLivro){
+    EmprestarLivro(nomeLivro){
         
-        for (let index = 0; index < titulo.length; index++) {
-            if (nomeLivro == titulo[index]){
-                if (disponibilidade[index] == true) {
-                    disponibilidade[index] = false               
+        for (let index = 0; index < this.AcervoDeLivros.length; index++) {
+            if (nomeLivro == this.AcervoDeLivros[index].Titulo){
+                if (this.AcervoDeLivros[index].Disponibilidade == true) {
+                    this.AcervoDeLivros[index].Disponibilidade = false               
                     return true
                 }else return false
             }
@@ -62,17 +49,24 @@ class Biblioteca{
         
     }
 
-    devolverLivro(nomeLivro){
+    DevolverLivro(nomeLivro){
         
-        for (let index = 0; index < titulo.length; index++) {
-            if (nomeLivro == titulo[index]){
-                disponibilidade[index] = true          
+        for (let index = 0; index < this.AcervoDeLivros.length; index++) {
+            if (nomeLivro == this.AcervoDeLivros[index].Titulo){
+                this.AcervoDeLivros[index].Disponibilidade = true          
             }
         }
     }
+    
+    AdicionarLivro(livro){
+        this.AcervoDeLivros.push(livro)
+    }
 }
 
-let biblioteca1 = new Biblioteca
-biblioteca1.nome = 'Biblioteca Pública Municipal'
-biblioteca1.endereco = 'Avenida Mandacaru, 317'
-biblioteca1.telefone = '(44) 3127-6055'
+let harryPotter = new Livro ('Harry Potter e a Pedra Filosofal', 'J. K. Rowling', 'Rocco', 1998)
+
+let senhorDosAneis = new Livro ('O Senhor dos anéis: A sociedade do anel', 'J. R. R. Tolkien', 'HarperCollins', 1954)
+
+let oCapital = new Livro ('O Capital', 'Karl Marx', 'edipro', 1867)
+
+let biblioteca1 = new Biblioteca('Biblioteca Pública Municipal', 'Avenida Mandacaru, 317', '(44) 3127-6055')
